@@ -1,4 +1,8 @@
-# Final project
+"""
+Final project
+Executing this application initiates the emotoion detection
+ to be executed over the Flask channel and deployed on localhost:5000.
+"""
 
 # Import Flask, render_template, request from the flask pramework package
 from flask import Flask, render_template, request

@@ -20,7 +20,14 @@ response = requests.post(url, json = myobj, headers=header, timeout=5)
 # Print the status code of the first response
 print(response.status_code)
 
-# Define the second payload with meaningful text to test the API
+# Define the second payload with nonsensical text to test the API
+myobj = { "raw_document": { "text": "as987da-6s2d aweadsa" } }  
+# Send a POST request to the API with the first payload and headers
+response = requests.post(url, json = myobj, headers=header, timeout=5)  
+# Print the status code of the first response
+print(response.status_code)
+
+# Define the third payload with meaningful text to test the API
 myobj = { "raw_document": { "text": "Testing this application for error handling" } }
 # Send a POST request to the API with the second payload and headers
 response = requests.post(url, json = myobj, headers=header, timeout=5) 

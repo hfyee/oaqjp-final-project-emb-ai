@@ -4,9 +4,9 @@ Executing this application initiates the emotoion detection
  to be executed over the Flask channel and deployed on localhost:5000.
 """
 
-# Import Flask, render_template, request from the flask pramework package
+# Import Flask, render_template, request from the flask framework package
 from flask import Flask, render_template, request
-# Import the sentiment_analyzer function from the package created
+# Import the emotion_detector function from the package created
 from EmotionDetection.emotion_detection import emotion_detector
 
 #Initiate the flask app
@@ -31,9 +31,10 @@ def sent_detector():
     emotions_list = ", ".join(my_list)
     dominant_emotion = response['dominant_emotion']
 
-    # Return a formatted string with the emotions list and dominant emotion
-    #return "For the given statement, the system response is " + emotions_list + \
-    #". The dominant emotion is {}.".format(dominant_emotion)
+    # Check if dominant_emotion is None, indicating an error or invalid input
+    if dominant_emotion is None:
+        return "Invalid text! Please try again!"
+    # Else, return a formatted string with the emotions list and dominant emotion
     return f"For the given statement, the system response is {emotions_list}. \
     The dominant emotion is {dominant_emotion}"
 

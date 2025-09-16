@@ -9,7 +9,10 @@ from EmotionDetection.emotion_detection import emotion_detector
 app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
-def sent_analyzer():
+def sent_detector():
+    """
+    Sends a post request to Watson NLP library and extracts the response.
+    """
     # Retrieve the text to analyze from the request arguments
     text_to_analyze = request.args.get('textToAnalyze')
 
@@ -25,10 +28,16 @@ def sent_analyzer():
     dominant_emotion = response['dominant_emotion']
 
     # Return a formatted string with the emotions list and dominant emotion
-    return "For the given statement, the system response is " + emotions_list + ". The dominant emotion is {}.".format(dominant_emotion)
+    #return "For the given statement, the system response is " + emotions_list + \
+    #". The dominant emotion is {}.".format(dominant_emotion)
+    return f"For the given statement, the system response is {emotions_list}. \
+    The dominant emotion is {dominant_emotion}"
 
 @app.route("/")
 def render_index_page():
+    """
+    Runs the render_template function on the HTML template
+    """
     return render_template('index.html')
 
 if __name__ == "__main__":

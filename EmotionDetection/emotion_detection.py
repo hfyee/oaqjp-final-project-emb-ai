@@ -27,21 +27,9 @@ def emotion_detector(text_to_analyse):
 
     # If the response status code is 200, extract the set of emotions and their scores from the response
     if response.status_code == 200:
-        anger_score = formatted_response['emotionPredictions'][0]['emotion']['anger']
-        disgust_score = formatted_response['emotionPredictions'][0]['emotion']['disgust']
-        fear_score = formatted_response['emotionPredictions'][0]['emotion']['fear']
-        joy_score = formatted_response['emotionPredictions'][0]['emotion']['joy']
-        sadness_score = formatted_response['emotionPredictions'][0]['emotion']['sadness']
-        emotions_dict = {
-            'anger': anger_score, 
-            'disgust': disgust_score, 
-            'fear': fear_score, 
-            'joy': joy_score, 
-            'sadness': sadness_score
-        }
+        emotions_dict = formatted_response['emotionPredictions'][0]['emotion']
         dominant_emotion = max(emotions_dict, key=emotions_dict.get)
-
-     # If the response status code is 400 for blank entries, set the values for all keys to None
+    # If the response status code is 400 for blank entries, set the values for all keys to None
     elif response.status_code == 400:
         emotions_dict = {
             'anger': None, 
